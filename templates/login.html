@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<style>
+    body
+    {
+        margin: 0; padding: 0;
+        background-color: rgb(100, 100, 170);
+    }
+    h1
+    {
+        text-align: center;
+        font-family: cursive;
+        font-stretch: initial;
+        margin-top: 100px;
+    }
+    form
+    {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px;
+        border: rgb(136, 50, 220) solid 4px;
+        background-color: rgb(90, 80, 120);
+        width: 60%;
+        margin-top: 10%;
+    }
+    .input_t
+    {
+        text-align: center;
+        font-size: 1.2em;
+        width: 60%;
+        font-family: cursive;
+        float: inherit;
+        border-radius: 5px;
+        border: solid rgb(136, 50, 220) 4px;
+        background-color: gray;
+    }
+    .input_b
+    {
+        font-family: cursive;
+        font-size: 1.2em;
+        width: 20%;
+        border: solid rgb(90, 80, 120) 2px;
+        border-radius: inherit;
+    }
+
+    ::-webkit-input-placeholder { /* Chrome */
+      color: white;
+      opacity: 0.5;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: white;
+      opacity: 0.5;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: white;
+      opacity: 0.5;
+    }
+    :-moz-placeholder { /* Firefox 4 - 18 */
+      color: white;
+      opacity: 0.5;
+    }
+    
+</style>
+<body>
+    <h1>어서와 처음이지?</h1>
+    <form method="post" action = "/account/login_ing">
+        <p><input type = "text" class = "input_t" name = "user_id" placeholder="아이디"></p>
+        <p><input type = "password" class="input_t" name = "user_pw" placeholder="비밀번호"></p>
+        <input type = "submit" class="input_b" value = "로그인"><input type = "button" class="input_b" value="회원가입" onclick = "location.href='/account/create_account.do'">
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user}}의 정보</title>
+</head>
+<body>
+<form method="post" action="/account/edit">
+    <input type = "text" value = "{{ user }}" name="user_n" >
+    <input type = "text" value="{{ phone }}" name="phone_n" >
+    <input type = "text" value="{{ email }}" name="email_n" >
+    <input type = "button" value="뒤로가기" onclick="location.href='/main'">
+    <input type = "submit" value = "수정">
+</form>
+</body>
+</html>

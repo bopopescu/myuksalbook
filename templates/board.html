@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="/UTF-8">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <script src="../static/js/jquery.ui.widget.js"></script>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		var page = 0;
+		var maxp = {{ max }};
+		$(window).scroll(function() {
+		    if (maxp == page)    {
+		        return false;
+            }
+			if ($(window).height() < $(window).height()) {
+                get_content(page)
+                console.log(++page);
+            }
+		    if ($(window).scrollTop() > $(document).height() - $(window).height()-1000) {
+                get_content(page)
+                console.log(++page);
+		    }
+		});
+
+
+
+		function get_content(page)
+        {
+            $.ajax({
+            url: '/board/select',
+            data: {"page" : page},
+            type: 'POST',
+            success: function(result) {
+                var last = JSON.parse(result)
+                var html ="" +
+                    "<div class=\"box\">" + "<p id = \"box_user\">" + last.user + "   </p>" +
+                    "<p id = \"box_title\">" + last.title + "</p>" + "<br><p id = \"time\">" + last.date + "</p><hr id = \"gijoon\">"+
+                    "<p calss=\"box_content\">" + last.content + "</p>" +
+                    "<img class = \"box_img\" src =  /static/Uploads/" + last.no + "/" + last.file + "></div>" +
+                    "<p id = \"hit\">" + last.hit + "<p>"
+		        $(".start").append(html);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+            });
+        }
+
+	</script>
+	<title>메인화면</title>
+	<style type="text/css">
+        body
+        {
+            background-color: rgb(150, 180, 190);
+            padding: 0;
+        }
+		.main
+		{
+            margin-bottom: 20%;
+            padding: 0;
+        }
+        #main_img
+        {
+            margin : 10% 45%;
+            border: 0px;
+            width: 10%;
+            height: 10%;
+        }
+		.box
+		{
+            margin-top: 5%;margin-bottom: 5%;
+            margin-left: 25%;margin-right: 25%;
+            text-align: left;
+            background-color: rgb(150, 180, 190);
+            text-align : left;
+            width: 50%;
+            height: 40%;
+            border: solid rgba(20, 40, 50, 0.8) 0.1vmax;
+		}
+        #box_user
+        {
+            font-size: 1.3em;
+        }
+        .box_title
+        {
+            font-size: 1em;
+        }
+        .box_content
+        {
+            font-size: 0.8em;
+        }
+        .box_img
+        {
+            margin: 0%;
+            padding: 0%;
+            width: 100%;
+            height: auto;
+        }
+        #gijoon
+        {
+            border : solid black 0.1vh ;
+            opacity: 0.5;
+        }
+
+        ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    /* Change the link color to #111 (black) on hover */
+    li a:hover {
+        background-color: #111;
+    }
+
+	</style>
+</head>
+<body>
+    <ul>
+        <li><a href="/account/{{ user }}">{{ user }}</a></li>
+        <li><a href="/account/logout">로그아웃</a></li>
+        <li><a href="/chat">채팅</a></li>
+    </ul>
+
+    <input type = "button" value="글 작성" onclick="location.href='/board/write'">
+    <br>
+	<div class = "main">
+        <img id = "main_img" src="/static/img/moon-307307_1280.png">
+
+	</div>
+    <DIV class = "start"></DIV>
+
+
+
+</body>
+</html>
